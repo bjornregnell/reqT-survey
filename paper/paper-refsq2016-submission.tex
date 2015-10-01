@@ -62,7 +62,7 @@
   %showstringspaces=false,
   showspaces=false,
   %breakatwhitespace=true,
-  basicstyle=\ttfamily\scriptsize,
+  basicstyle=\ttfamily\fontsize{8}{10}\selectfont,
   emph={Ent,Meta,Item,Label,Section,Term,Actor,App,Component,Domain,Module,Product,Release,Resource,Risk,Service,Stakeholder,System,User,Class,Data,Input,Member,Output,Relationship,Design,Screen,MockUp,Function,Interface,State,Event,Epic,Feature,Goal,Idea,Issue,Req,Ticket,WorkPackage,Breakpoint,Barrier,Quality,Target,Scenario,Task,Test,Story,UseCase,VariationPoint,Variant},
   emphstyle=\bfseries\color{entityColor},
   emph={[2]has,is,superOf,binds,deprecates,excludes,helps,hurts,impacts,implements,interactsWith,precedes,requires,relatesTo,verifies},
@@ -98,7 +98,7 @@
 
 %%%% ABSTRACT
 \begin{abstract}
-[{\bf Context \& motivation}] This research preview presents ongoing work on the metamodel of a free software requirements modeling tool called reqT that is developed in an educational context. The work aims to make an initial validation of a survey instrument that elicits views on the metamodel of the reqT tool, which seek to engage computer science students in Requirements Engineering (RE) through an open source requirements engineering DSL embedded in the Scala programming language. [{\bf Question}] The research question is: Which RE concepts are essential to include in the metamodel for a requirements engineering tool in an educational context?  [{\bf Principal ideas}] A survey instrument is developed with a list of 92 concepts (49 entities, 15 relations and 28 attributes) and a set of questions for each concept that elicit the respondents' views on the usage and interpretation of each concept.  [{\bf Contribution}] The survey is initially validated in a pilot study involving 14 Swedish RE scholars as subjects. The survey results indicate that the survey is feasible if the respondents is willing to invest around 30 minutes of their time. The analysis of the responses suggest that many of the concepts in the metamodel are used frequently by the respondents and there is a large degree of agreement among the respondents about the meaning of the concepts. Some terms can be viewed as ''essential RE concepts'' in that a many use them and agree on their meaning. The results are encouraging for future work on empirical validation of the relevance of the reqT metamodel. 
+[{\bf Context \& motivation}] This research preview presents ongoing work on the metamodel of a free software requirements modeling tool called reqT that is developed in an educational context. The work aims to make an initial validation of a survey instrument that elicits views on the metamodel of the reqT tool, which seek to engage computer science students in Requirements Engineering (RE) through an open source requirements engineering DSL embedded in the Scala programming language. [{\bf Question}] The research question is: Which RE concepts are essential to include in the metamodel for a requirements engineering tool in an educational context?  [{\bf Principal ideas}] A survey instrument is developed with a list of 92 concepts (49 entities, 15 relations and 28 attributes) and a set of questions for each concept that elicit the respondents' views on the usage and interpretation of each concept.  [{\bf Contribution}] The survey is initially validated in a pilot study involving 14 Swedish RE scholars as subjects. The survey results indicate that the survey is feasible. The analysis of the responses suggest that many of the concepts in the metamodel are used frequently by the respondents and there is a large degree of agreement among the respondents about the meaning of the concepts. The results are encouraging for future work on empirical validation of the relevance of the reqT metamodel. 
 
 \keywords{requirements engineering, metamodel, CASE tool, engineering education, embedded domain-specific language, empirical software engineering.}
 \end{abstract}
@@ -108,7 +108,7 @@
 There are many challenges in teaching Requirements Engineering (RE) \cite{Memon2010, Regev2011}, including  conveying requirements modelling skills that can be used effectively in an unstructured, non-ideal, real-world situation \cite{Callele2006}. When teaching RE modelling we may ask ourselves: What are the \textit{essential} RE concepts that we should include in our taught metamodel for requirements? This paper investigates this questions in conjunction with the on-going work of developing a metamodel for reqT \cite{reqT}, an open source requirements engineering tool \cite{Regnell2013} used in RE education \cite{ets170}.
 A survey instrument is presented aiming to elicit the frequency of RE term usage and the degree of interpretation agreement. The responses from 14 Swedish RE scholars are analysed and discussed and conclusions suggest that a large subset of the concepts of the current reqT metamodel can be argued to be ''essential'' in that a majority of the subjects use them while agreeing with the concept definitions. The presented work is an initial validation and further work involving more subjects is needed to provide conclusions with more certainty. 
 
-\section{Background and Related Work}
+\section{Background}
 
 There are nowadays numerous commercial RE tools available, but many are expensive, complex and not sufficiently open  \cite{Carillo2011}. A major aim of the reqT open source project is to provide a small but scalable, semi-formal and free software package for an educational setting \cite{Regnell2013} that can inspire code-loving computer science students to learn more about requirements modeling. The tool development started in 2011 at Lund University, where reqT is used in RE teaching at MSc level in the Computer Science \& Engineering program \cite{ets170}. 
 
@@ -120,9 +120,7 @@ The reqT metamodel includes three types of concepts: entities, attributes and re
 The code below shows a toy example of an orthogonal variability model \cite{metzger2007variability} expressed in the reqT Scala-embedded DSL \cite{Regnell2013} illustrating a small part of its metamodel. Other parts of the metamodel contains concepts that enable e.g. goal modelling %\cite{liu2004} 
 and use case and user story modelling, see further Appendix A.
 
-\begin{spacing}{0.8}
-\begingroup
-    \fontsize{8pt}{12pt}\selectfont
+\begin{spacing}{1.1}
 \begin{lstlisting}
 Model(
   Component("apperance") has (
@@ -146,7 +144,6 @@ Model(
     VariationPoint("shape") binds (Variant("round"), Variant("square")),
     VariationPoint("payment") binds Variant("cash")))
 \end{lstlisting}
-\endgroup
 \end{spacing}
 \noindent Entities are in bold, attributes in italics and relations start with a lower case letter. In the reqT editor, entities, attributes, and relations are syntax-coloured in blue, green and red respectively. A reqT model written in the above syntax is actually valid Scala code that, when executed, generates data structure that can be traversed and manipulated using Scala scripts. Also visualisations can be generated using GraphViz export and export to HTML and spreadsheet formats. 
 
@@ -186,7 +183,7 @@ If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts f
 %
 \begingroup
 \setlength{\tabcolsep}{4pt} % Default value: 6pt
-\renewcommand{\arraystretch}{1.2} % Default value: 1
+\renewcommand{\arraystretch}{1.35} % Default value: 1
 \begin{table}
 \centering
 \fontsize{7}{8}\selectfont
