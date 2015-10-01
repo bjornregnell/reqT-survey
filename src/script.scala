@@ -80,7 +80,7 @@ object Extract {  // ----------- Process the Matrix and output results ---------
   val (teach, develop, research) = (9, 10, 11)
   def yesOf(xs: Vector[String]) = xs.zipWithIndex.filter(_._1.toLowerCase == "yes").map(_._2)
   def background = for (i <- Seq(teach, develop, research)) yield {
-     val ids = yesOf(data.map(_.apply(i, 4))).map(_ + 1).map(_.toString).map(s => "R" + "0"*(2-s.length) + s)
+     val ids = yesOf(data.map(_.apply(i, 4))).map(_ + 1).map(_.toString).map(s => "S" + "0"*(2-s.length) + s)
      val question = data(0)(i,1) + " YES/NO"
      (question, ids)
   } 
