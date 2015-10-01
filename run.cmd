@@ -1,0 +1,1 @@
+scala -cp "./lib/poi-3.12/poi-3.12-20150511.jar;./lib/poi-3.12/poi-ooxml-3.12-20150511.jar" src/script.scala
