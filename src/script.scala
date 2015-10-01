@@ -21,7 +21,7 @@ case class Matrix[T](vectors: Vector[Vector[T]]){
   def get(x: Int, y: Int): Option[T] = Try(vectors(x)(y)).toOption
 }
 
-object Xls {
+object Xls {  // ----------- Load xls file into a Matrix ---------------------
 
   def load(fileName: String, sheetNum: Int = 0): Matrix[String] = 
     loadFile(new File(fileName), sheetNum)
@@ -45,8 +45,17 @@ object Xls {
     if (cell != null) dataFormatter.formatCellValue(cell) else ""
 }
 
-object Extract { 
-  val DATA_DIR = "Data"
+object Extract {  // ----------- Process the Matrix and output results -----------------
+  val DATA_DIR = "data/"
+  val OUT_DIR = "analysis/"
+  val FILE_SUMMARY = OUT_DIR + "summary.tex"
+  val TABLE_ENT = OUT_DIR + "entity-defs.tex"
+  val TABLE_ATTR = OUT_DIR + "attribute-defs.tex"
+  val TABLE_REL = OUT_DIR + "relation-defs.tex"
+  val FILE_BACKGROUND = OUT_DIR + "background.tex"
+  val FILE_ESSENTIAL = OUT_DIR + "essential.tex"
+  val NL = "\\\\"
+
   def toInt(s: String): Int = Try(s.toDouble.toInt).getOrElse(0) 
   case class Quest(usageStr: String, meaningStr: String, other: String, synonym: String){
     val usage = toInt(usageStr)
@@ -54,6 +63,9 @@ object Extract {
     val agreement = usage + meaning
   }
   def ls(dir: String) = (new File(dir)).listFiles.toVector
+  def resetFiles(files: String*) = files.map(scala.tools.nsc.io.File(_).writeAll(""))
+  def writelnToFile(file: String)(data: String) = scala.tools.nsc.io.File(file).writeAll(data+"\n")
+  def appendlnToFile(file: String)(data: String) = scala.tools.nsc.io.File(file).appendAll(data+"\n")
   val files = ls(DATA_DIR)
   val data = files.map(Xls.loadFile(_))
 
@@ -68,11 +80,12 @@ object Extract {
   val (teach, develop, research) = (9, 10, 11)
   def yesOf(xs: Vector[String]) = xs.zipWithIndex.filter(_._1.toLowerCase == "yes").map(_._2)
   def background = for (i <- Seq(teach, develop, research)) yield {
-     val ids = yesOf(data.map(_.apply(i, 4)))
+     val ids = yesOf(data.map(_.apply(i, 4))).map(_ + 1).map(_.toString).map(s => "R" + "0"*(2-s.length) + s)
      val question = data(0)(i,1) + " YES/NO"
      (question, ids)
   } 
-  def printBackground = background.foreach(b => println(b._1 + "\n" + b._2.mkString(" ")))
+  def printBackground = background.foreach(b => 
+    appendlnToFile(FILE_BACKGROUND)(b._1 + " & " + b._2.mkString(" ") + NL ))
 
   val teachers = data.map(_.apply(9,4))
   val developers = data.map(_.apply(10,4))
@@ -132,24 +145,39 @@ object Extract {
           println(s"\nNumber of subjects that for this $concept answered (use, agree) = (2, 2)")
           freqOf(conceptFilter, countAtLeastVerdict(2, 2)) foreach (p => println(p._1 + " " + p._2.mkString(" ")))
 
-          println(s"\nNumber of subjects that for this $concept answered (use, agree) = (1, 2)")
+          println(s"\nNumber of subjects that for this $concept answered (use, agree) >= (1, 2)")
           freqOf(conceptFilter, countAtLeastVerdict(1, 2)) foreach (p => println(p._1 + " " + p._2.mkString(" ")))
-
     }}
+
+    appendlnToFile(FILE_ESSENTIAL)(s"%%%%%%%%%%%%% Summary table of (use, agree) >= (1, 2)")
+    type CMap = Map[Int, Vector[String]]
+    val ent:  CMap = freqOf(isEntity,    countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())   
+    val attr: CMap = freqOf(isAttribute, countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())   
+    val rel:  CMap = freqOf(isRelation,  countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())  
+    def out(i: Int, m: CMap) = s""" & \\texttt{${m(i).mkString(", ")}}"""
+    (14 to 0 by -1).foreach{i => appendlnToFile(FILE_ESSENTIAL)(s"$$$i$$" + out(i, ent) + out(i, attr) + out(i, rel) + NL + "\\hline" )} 
   }
 
   def summary = {
-    println("====== Data Summary =======")
-    println(s"""  Number of subjects:    $n""")
-    println(s"""  Number of teachers:    ${countRole(teachers,"yes")}""")
-    println(s"""  Number of developers:  ${countRole(developers,"yes")}""")
-    println(s"""  Number of researchers: ${countRole(researchers,"yes")}""")
+    resetFiles(FILE_SUMMARY, FILE_BACKGROUND, TABLE_ENT, TABLE_ATTR, TABLE_REL, FILE_ESSENTIAL)
+
+    appendlnToFile(FILE_SUMMARY)("%%% ====== Data Summary =======")
+    appendlnToFile(FILE_SUMMARY)(s"""total number of subjects is $n, """)
+    appendlnToFile(FILE_SUMMARY)(s"""of which ${countRole(teachers,"yes")} are teachers, """)
+    appendlnToFile(FILE_SUMMARY)(s"""${countRole(developers,"yes")} are developers and """)
+    appendlnToFile(FILE_SUMMARY)(s"""${countRole(researchers,"yes")} are researchers.""")
+
 
     printBackground
 
     printFreq
 
-    concepts.filter(isAttribute).map(c => (c,definitionOf(c))).foreach{case (c,d) => println(c+"&"+d+"\\\\")}
+    concepts.filter(isEntity).map(c => 
+        (c,definitionOf(c))).foreach{case (c,d) => appendlnToFile(TABLE_ENT)("\\texttt{"+c+"}&"+d+NL)}
+    concepts.filter(isAttribute).map(c => 
+        (c,definitionOf(c))).foreach{case (c,d) => appendlnToFile(TABLE_ATTR)("\\texttt{"+c+"}&"+d+NL)}
+    concepts.filter(isRelation).map(c => 
+        (c,definitionOf(c))).foreach{case (c,d) => appendlnToFile(TABLE_REL)("\\texttt{"+c+"}&"+d+NL)}
   }
 }
 
