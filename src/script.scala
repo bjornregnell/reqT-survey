@@ -159,10 +159,11 @@ object Extract {  // ----------- Process the Matrix and output results ---------
     val ent:  CMap = freqOf(isEntity,    countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())   
     val attr: CMap = freqOf(isAttribute, countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())   
     val rel:  CMap = freqOf(isRelation,  countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())  
-    def out(i: Int, m: CMap) = s""" & \\texttt{${m(i).mkString(", ")}}"""
+    def tex(i: Int, m: CMap) = s""" & \\texttt{${m(i).mkString(", ")}}"""
+    def plain(i: Int, m: CMap) = s"""${m(i).mkString(", ")}"""
     (14 to 0 by -1).foreach{i => 
-        appendlnToFile(FILE_ESSENTIAL)(s"$$$i$$" + out(i, ent) + out(i, attr) + out(i, rel) + NL + "\\hline" )
-        appendlnToFile(FILE_ANALYSIS)(s"""| $i | ${out(i, ent)} | ${out(i, attr)} | ${out(i, rel)} |\n""" )
+        appendlnToFile(FILE_ESSENTIAL)(s"$$$i$$" + tex(i, ent) + tex(i, attr) + tex(i, rel) + NL + "\\hline" )
+        appendlnToFile(FILE_ANALYSIS)(s"""| $i | ${plain(i, ent)} | ${plain(i, attr)} | ${plain(i, rel)} |""" )
     } 
   }
 
