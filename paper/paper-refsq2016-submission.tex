@@ -51,6 +51,9 @@
 %%%%
 
 \usepackage{hyperref}
+\usepackage{cleveref} % http://tex.stackexchange.com/questions/10102/multiple-references-to-the-same-footnote-with-hyperref-support-is-there-a-bett/10116#10116
+\crefformat{footnote}{#2\footnotemark[#1]#3}
+
 \usepackage{xcolor}
 \definecolor{entityColor}{RGB}{0,100,200}
 \definecolor{attributeColor}{RGB}{0,100,50}
@@ -98,35 +101,34 @@
 
 %%%% ABSTRACT
 \begin{abstract}
-[{\bf Context \& motivation}] This research preview presents ongoing work on the metamodel of a free software requirements modeling tool called reqT that is developed in an educational context. The work aims to make an initial validation of a survey instrument that elicits views on the metamodel of the reqT tool, which seek to engage computer science students in Requirements Engineering (RE) through an open source requirements engineering DSL embedded in the Scala programming language. [{\bf Question}] The research question is: Which RE concepts are essential to include in the metamodel for a requirements engineering tool in an educational context?  [{\bf Principal ideas}] A survey instrument is developed with a list of 92 concepts (49 entities, 15 relations and 28 attributes) and a set of questions for each concept that elicit the respondents' views on the usage and interpretation of each concept.  [{\bf Contribution}] The survey is initially validated in a pilot study involving 14 Swedish RE scholars as subjects. The survey results indicate that the survey is feasible. The analysis of the responses suggest that many of the concepts in the metamodel are used frequently by the respondents and there is a large degree of agreement among the respondents about the meaning of the concepts. The results are encouraging for future work on empirical validation of the relevance of the reqT metamodel. 
+[{\bf Context \& motivation}] This research preview paper presents ongoing work on the metamodel of a free software requirements modeling tool called reqT that is developed in an educational context. The work aims to make an initial validation of a survey instrument that elicits views on the metamodel of the reqT tool, which seek to engage computer science students in Requirements Engineering (RE) through an open source requirements engineering DSL embedded in the Scala programming language. [{\bf Question}] The research question is: Which RE concepts are essential to include in the metamodel for a requirements engineering tool in an educational context?  [{\bf Principal ideas}] A survey instrument is developed with a list of 92 concepts (49 entities, 15 relations and 28 attributes) and a set of questions for each concept that elicit the respondents' views on the usage and interpretation of each concept.  [{\bf Contribution}] The survey is initially validated in a pilot study involving 14 Swedish RE scholars as subjects. The survey results indicate that the survey is feasible. The analysis of the responses suggest that many of the concepts in the metamodel are used frequently by the respondents and there is a large degree of agreement among the respondents about the meaning of the concepts. The results are encouraging for future work on empirical validation of the relevance of the reqT metamodel. 
 
 \keywords{requirements engineering, metamodel, CASE tool, engineering education, embedded domain-specific language, empirical software engineering.}
 \end{abstract}
 
 %%%%% INTRO
 \section{Introduction}
-There are many challenges in teaching Requirements Engineering (RE) \cite{Memon2010, Regev2011}, including  conveying requirements modelling skills that can be used effectively in an unstructured, non-ideal, real-world situation \cite{Callele2006}. When teaching RE modelling we may ask ourselves: What are the \textit{essential} RE concepts that we should include in our taught metamodel for requirements? This paper investigates this questions in conjunction with the on-going work of developing a metamodel for reqT \cite{reqT}, an open source requirements engineering tool \cite{Regnell2013} used in RE education \cite{ets170}.
-A survey instrument is presented aiming to elicit the frequency of RE term usage and the degree of interpretation agreement. The responses from 14 Swedish RE scholars are analysed and discussed and conclusions suggest that a large subset of the concepts of the current reqT metamodel can be argued to be ''essential'' in that a majority of the subjects use them while agreeing with the concept definitions. The presented work is an initial validation and further work involving more subjects is needed to provide conclusions with more certainty. 
+There are many challenges in teaching Requirements Engineering (RE) \cite{Memon2010, Regev2011}, including  advancing students' requirements modelling skills that can be used effectively in an unstructured, non-ideal, real-world situation \cite{Callele2006}. When teaching RE modelling we may ask ourselves: What are the \textit{essential} RE concepts that we should include in a taught metamodel for requirements? This paper investigates this questions in conjunction with the on-going work of developing a metamodel for reqT \cite{reqT}, an open source requirements engineering tool used in RE education  \cite{Regnell2013}.
+A survey instrument is presented aiming to elicit the frequency of RE term usage and the degree of interpretation agreement. The responses from 14 Swedish RE scholars are analysed and discussed and conclusions suggest that a large subset of the concepts of the current reqT metamodel can be seen as ''essential'' in that a majority of the subjects use them while agreeing with the concepts' definitions. The presented work represents an initial validation of the survey instrument. Further work involving more subjects is needed to draw conclusions with more certainty. 
 
 \section{Background}
 
-There are nowadays numerous commercial RE tools available, but many are expensive, complex and not sufficiently open  \cite{Carillo2011}. A major aim of the reqT open source project is to provide a small but scalable, semi-formal and free software package for an educational setting \cite{Regnell2013} that can inspire code-loving computer science students to learn more about requirements modeling. The tool development started in 2011 at Lund University, where reqT is used in RE teaching at MSc level in the Computer Science \& Engineering program \cite{ets170}. 
+There are nowadays numerous commercial RE tools available, but many are expensive, complex and not sufficiently open  \cite{Carillo2011}. A major aim of the reqT open source project is to provide a small but scalable, semi-formal and free software package for an educational setting \cite{Regnell2013} that can inspire code-loving computer science students to learn more about requirements modeling. The tool development started in 2011 at Lund University, where reqT is used in RE teaching at MSc level in student role-playing projects.\footnote{\label{note:ets170}The Lund Univ. MSc-level RE course can be found at: \scriptsize\url{http://cs.lth.se/education}}
 
-A critical issue is how to choose the "essential" RE concepts that allows for sufficient expressiveness, while not overloading the metamodel with esoteric concepts just for the sake of completeness. 
+A critical issue is how to choose the essential RE concepts that allows for sufficient expressiveness, while not overloading the metamodel with esoteric concepts just for the sake of completeness. 
 %The reqT tool is used in a course based on a specific text book \cite{Lauesen2002} and a specific student project concept \cite{ets170}, and the concepts of the earlier versions of the reqT requirements metamodel reflect that context. 
 
 The reqT metamodel includes three types of concepts: entities, attributes and relations. Entities and attributes are nodes in a graph data structure, while relations are edges that can connect entities with sub-graphs. Thus a tree-like structure can be created of arbitrary depth spanning the graph that models some chunk of requirements. 
 
-The code below shows a toy example of an orthogonal variability model \cite{metzger2007variability} expressed in the reqT Scala-embedded DSL \cite{Regnell2013} illustrating a small part of its metamodel. Other parts of the metamodel contains concepts that enable e.g. goal modelling %\cite{liu2004} 
-and use case and user story modelling, see further Appendix A.
+The code below shows a toy example of an orthogonal variability model \cite{metzger2007variability} expressed in the reqT Scala-embedded DSL \cite{Regnell2013} illustrating a small part of its metamodel. Other parts of the metamodel contains concepts that enable e.g. goal modelling, %\cite{liu2004} 
+use case modelling, and user story modelling, see further Appendix A.
 
 \begin{spacing}{1.1}
 \begin{lstlisting}
 Model(
   Component("apperance") has (
     VariationPoint("color") has (
-      Min(0), Max(2),
-      Variant("blue"), Variant("red"), Variant("green")),
+      Min(0), Max(2), Variant("blue"), Variant("red"), Variant("green")),
     VariationPoint("shape") has (
       Min(1), Max(1), Variant("round"), Variant("square")),
     VariationPoint("payment") has (
@@ -135,23 +137,23 @@ Model(
     Variant("round") excludes Variant("red"),
     Variant("green") requires Variant("square")),
   Component("apperance") requires VariationPoint("shape"), 
-  App("free") requires Component("apperance"),  
-  App("free") binds (
-    VariationPoint("shape") binds Variant("round")),
-  App("premium") requires Component("apperance"),  
+  App("free") has Component("apperance"),  
+  App("free") binds (VariationPoint("shape") binds Variant("round")),
+  App("premium") has Component("apperance"),  
   App("premium") binds ( 
     VariationPoint("color") binds (Variant("red"), Variant("green")),
     VariationPoint("shape") binds (Variant("round"), Variant("square")),
     VariationPoint("payment") binds Variant("cash")))
 \end{lstlisting}
 \end{spacing}
-\noindent Entities are in bold, attributes in italics and relations start with a lower case letter. In the reqT editor, entities, attributes, and relations are syntax-coloured in blue, green and red respectively. A reqT model written in the above syntax is actually valid Scala code that, when executed, generates data structure that can be traversed and manipulated using Scala scripts. Also visualisations can be generated using GraphViz export and export to HTML and spreadsheet formats. 
+\noindent Entities in the above code listing are in bold, attributes in italics and relations start with a lower case letter. In the reqT editor, entities, attributes, and relations are syntax-coloured in blue, green and red respectively. A reqT model written in the above syntax is actually valid Scala code that, when executed, generates a data structure that can be traversed and manipulated using Scala scripts. Also visualisations can be generated using GraphViz export and export to HTML and spreadsheet formats. 
 
 
 
 
 \section{Methodology and Data Collection}
-In order to validate RE scholar's opinions of the metamodel a survey instrument is developed including 49 entities, 15 relations and 28 attributes of the reqT Version 3.0 metamodel. All the concepts are listed with their definitions in Appendix A.\footnote{The survey is available at \url{https://github.com/reqT/reqT/tree/3.0.x/survey}} These concepts and definitions were gathered from various sources including the IREB Glossary \footnote{\url{https://www.ireb.org/en/cpre/cpre-glossary/}}, wikipedia, terminology from agile development, variability \cite{metzger2007variability} and goal modelling terminology, and the Lauesen text book \cite{Lauesen2002} used in the RE course at Lund University \cite{ets170}, in which reqT is applied in student role-playing projects. 
+In order to validate RE scholar's opinions of the metamodel, a survey instrument was developed including the 49 entities, 15 relations and 28 attributes of the reqT Version 3.0 metamodel. All the concepts are listed with their definitions in Appendix A.\footnote{The survey is available at \scriptsize\url{https://github.com/reqT/reqT/tree/3.0.x/survey}} These 92 concepts and definitions were gathered from various sources including the IREB Glossary \footnote{\scriptsize\url{https://www.ireb.org/en/cpre/cpre-glossary/}}, wikipedia, terminology from agile development, variability \cite{metzger2007variability} and goal modelling terminology, and the text book\cite{Lauesen2002} used in an RE course at Lund Univ.\cref{note:ets170} 
+\vspace{-0.2cm}
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{img/survey-screen-dump}
@@ -159,27 +161,31 @@ In order to validate RE scholar's opinions of the metamodel a survey instrument 
 \label{fig:survey}
 \end{figure}
 
-\noindent The data collection for the presented pilot run was made during a Swedish national network meeting with academic RE scholars in the spring of 2015. The survey was filled in during the meeting using the participants' own laptops  in a downloadable spreadsheet as shown in Figure~\ref{fig:survey}. The subjects were given 20 minutes to complete the survey. Most of the subjects handed in the survey via email directly after the session, while a few finshed it offline and emailed their response after the meeting. 
+\noindent The data collection for the presented pilot run was made during a Swedish national network meeting with academic RE scholars in the spring of 2015. The survey was filled in during the meeting using the participants' own laptops  in a downloadable spreadsheet as shown in Fig.~\ref{fig:survey}. The subjects were given around 20 minutes to complete the survey. Most of the subjects handed in the survey via email directly after the session, while a few finished it offline and emailed their responses after the meeting. 
 \section{Data Analysis}
 
-\textbf{Subject background.} The background questions in the survey regards the role of the subject, as shown in Table \ref{table:background}. In summary, the included\footnote{One subject answered NO on all background questions and was therefore excluded.} \input{../analysis/summary.tex}
-\begin{table}[H]
-\centering
-\fontsize{8}{9}\selectfont
-\caption{Background of subjects, $N = 15$. The table use the subjects' anonymous ids S01--S15.}
-\label{table:background}
-\begin{tabular}{p{0.43\textwidth}| p{0.58\textwidth}}
-\textit{Background question} & \textit{Subject responding YES}  \\ 
-\input{../analysis/background.tex}
+\textbf{Subject background.} The background questions in the survey regards the role of the subject, as shown in Table \ref{table:background}. The analyzed\footnote{One subject answered NO on all background questions and was therefore excluded.} \input{../analysis/summary.tex} The response rate was 100\% after a reminder was emailed to one missing subject.
 
+
+\begingroup
+\begin{table}[H]
+\setlength{\tabcolsep}{4pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.4} % Default value: 1
+\centering
+\fontsize{8.5}{9}\selectfont
+\caption{Background of subjects, $N = 15$. The subjects were given anonymous ids S01--S15.}
+\label{table:background}
+\begin{tabular}{p{0.42\textwidth}| p{0.54\textwidth}}
+\textit{Background question} & \textit{Subject responding YES}  \\ \hline
+\input{../analysis/background.tex}
  \end{tabular}
 \end{table}
+\endgroup
 
-
-
-\noindent \textbf{Frequency analysis.} The idea of ''essentiality'' is characterized as the number of subjects that has responded that they (1) use the concepts at least in an informal or non-persistent way, \textit{and} that they (2) use the concepts in a similar meaning as in the definition in Appendix A. Figure~\ref{fig:survey} shows the definitions of the three-level ordinal scales of Questions $Q1_{usage}$  and $Q2_{meaning}$ respectively. Table \ref{table:frequency} shows the results of the frequency counts.  
-If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts from row $n = 7$ and below in Table~\ref{table:frequency} are considered ''non-essential'', hence showing that more than 90\% of the metamodel concepts have a majority of the subjects that use and agree upon them. All concepts have at least one subject that use it and agree with the definition.
-
+\vspace{-0.6cm}
+\noindent \textbf{Frequency analysis.} The degree of ''essentiality'' is characterized as the number of subjects that has responded that they (1) use the concept at least in an informal, non-persistent way, \textit{and} that they (2) use the concept in a similar meaning as in the definition in Appendix A. Fig.~\ref{fig:survey} shows the definitions of the three-level ordinal scales of Questions $Q1_{usage}$  and $Q2_{meaning}$ respectively. Table \ref{table:frequency} shows the results of the frequency counts.  
+If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts from row $n = 7$ and below in Table~\ref{table:frequency} are considered ''non-essential'', hence showing that more than 90\% of the metamodel concepts have a majority of the subjects that use them and agree upon their definitions. Each concept have at least one subject that uses it and agrees with its definition. {The anonymized data and analysis scripts (developed using Scala and Apache POI) are available at: \footnotesize\url{https://github.com/bjornregnell/reqT-survey}} 
+\vspace{-0.4cm}
 %
 \begingroup
 \setlength{\tabcolsep}{4pt} % Default value: 6pt
@@ -187,7 +193,7 @@ If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts f
 \begin{table}
 \centering
 \fontsize{7}{8}\selectfont
-\caption{Frequency analysis, where $n$ is the number of subjects that for the respective concepts answered $(Q1_{usage}>= 1)$ \textit{and} $(Q2_{meaning} = 2)$. In total there are 92 concepts (49 entities, 15 relations and 28 attributes). The higher up in the table, the more ''essential''.}
+\caption{Frequency analysis, where $n$ is the number of subjects that for the respective concept answered $(Q1_{usage}>= 1)$ \textit{and} $(Q2_{meaning} = 2)$. In total there are 92 concepts (49 entities, 15 relations and 28 attributes). The higher up in the table, the more ''essential''.}
 \label{table:frequency}
 \begin{tabular}{l | p{0.33\textwidth} | p{0.30\textwidth} | p{0.25\textwidth}}
 \textit{$n$} & \textit{Entities} & \textit{Attributes} & \textit{Relations} \\ \hline
@@ -203,18 +209,16 @@ If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts f
 
 \section{Discussion and Conclusion}\label{section:discussion}
 
-It can be questioned if ''essentiallity'' of a set of RE concepts can be characterized by how many RE scholars that use them. However, if someone use a certain concept and wants to model it, then the metamodel of the applied modelling approach needs to have it, in order for that person not to find that the metamodel is lacking vital parts. The presented survey is a pilot investigation with two main contributions: (1) the survey instrument and the data collection and analysis approach is feasible, and (2) for more than 90\% of the metamodel concept there is a majority of the 14 participating RE scholars that use them and agree upon their definition. 
+It can be questioned if ''essentiallity'' of a set of RE concepts can be characterized by how many RE scholars that use them. However, if someone use a certain concept and wants to model it, then the metamodel of the applied modelling approach needs to have it, in order not to risk that the person finds that the metamodel lacks vital parts. The presented survey is a pilot investigation with two main contributions: (1) the presented survey instrument, the data collection and analysis approach, which are shown to be feasible, and (2) the result that for more than 90\% of the reqT metamodel concept there is a majority of the 14 participating RE scholars that use them and agree upon their definitions. 
 
-
-
-
-{\bf Limitations. } Due to the limited number of subjects and the high degree of homogeneity among subjects with respect to background, it is difficult to analyse and draw conclusions about potential differences in opinions between e.g. teachers and developers. Some subjects needed more time and completed their survey offline during the coming days, which may give a variation in how careful the responses were considered. 
+{\bf Limitations. } The main threat to external validity is the limited number of subjects. Due to few subjects and the high degree of homogeneity among subjects with respect to background, it is difficult to analyse and draw conclusions e.g. about potential differences in opinions between e.g. teachers and developers. Some subjects needed more time and completed their survey offline during the coming days, which may give a variation in how carefully the responses were considered. 
 %The survey was conducted by the author and inventor of reqT, in conjunction with a seminar and demo of reqT. In order to avoid any positive bias due to advocacy in favour of the reqT metamodel, the survey was held prior to the seminar and demo. This in turn may introduce a threat of limited knowledge among subjects of the idea behind the modelling approach in reqT 
  
-{\bf Further work.} When developing a metamodel it is interesting not just to ask if the concepts to include are essential, but also to pose the question if is the set of concepts is complete. If some essential concept is missing from some stakleholder's viewpoint, then the metamodel is not sufficient.  With more subjects participating in the presented RE metamodel survey, the analysis of answers to further questions on alternative terms and missing concepts will be enabled and beneficial to the further development of a comprehensive and complete, but not overloaded, RE metamodel. %Further directions of research include (1) incorporation of constraints on models for support of prioritization and release planning \cite{Regnell2011}, (2) more elaborate semantic checks to better guide requirements modelers, and (3) graphical visualization of requirements graph models. (4) Natural Language Processing technology including e.g. ambiguity risk detection may be interesting to combine with reqT. (5) It is also important to further investigate the pedagogic advantages and limitations of the approach. 
+{\bf Further work.} When developing a metamodel it is interesting not just to ask if the concepts to include are essential, but also to pose the question if the set of concepts is complete. If some essential concept is missing from some stakleholder's viewpoint, then the metamodel is not sufficient.  With more subjects participating in the presented RE metamodel survey, the analysis of answers to further questions on alternative terms and missing concepts will be enabled and beneficial to the further development of a comprehensive and complete, but not overloaded, RE metamodel. %Further directions of research include (1) incorporation of constraints on models for support of prioritization and release planning \cite{Regnell2011}, (2) more elaborate semantic checks to better guide requirements modelers, and (3) graphical visualization of requirements graph models. (4) Natural Language Processing technology including e.g. ambiguity risk detection may be interesting to combine with reqT. (5) It is also important to further investigate the pedagogic advantages and limitations of the approach. 
 
 %A major objective of this research preview paper is to expose the latest version of reqT to the community of RE scholars and to invite discussions and contributions.
 
+\vspace{-0.2cm}
 
 \subsubsection*{Acknowledgments.} This work is partly funded by  VINNOVA within the EASE project.
 
