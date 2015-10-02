@@ -8,7 +8,7 @@ Go to https://github.com/reqT/reqT/tree/3.0.x/survey and download the `reqT-surv
 
 Clone/download this repo and then:
 
-* On Windows in Powershell/Cmd: type `./run`
+* On Windows in Powershell type `./run` or in Cmd type `run`
 
 * In Linux/Unix terminal: type `source run.sh`
 

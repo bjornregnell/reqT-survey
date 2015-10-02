@@ -54,6 +54,7 @@ object Extract {  // ----------- Process the Matrix and output results ---------
   val TABLE_REL = OUT_DIR + "relation-defs.tex"
   val FILE_BACKGROUND = OUT_DIR + "background.tex"
   val FILE_ESSENTIAL = OUT_DIR + "essential.tex"
+  val FILE_ANALYSIS = OUT_DIR + "ANALYSIS.md"
   val NL = "\\\\"
 
   def toInt(s: String): Int = Try(s.toDouble.toInt).getOrElse(0) 
@@ -149,13 +150,20 @@ object Extract {  // ----------- Process the Matrix and output results ---------
           freqOf(conceptFilter, countAtLeastVerdict(1, 2)) foreach (p => println(p._1 + " " + p._2.mkString(" ")))
     }}
 
-    appendlnToFile(FILE_ESSENTIAL)(s"%%%%%%%%%%%%% Summary table of (use, agree) >= (1, 2)")
+    appendlnToFile(FILE_ESSENTIAL)("%%%%%%%%%%%%% Summary table of (use, agree) >= (1, 2)")
+    writelnToFile (FILE_ANALYSIS)("## Analysis of requirements engineering concept essentiality\n\n")
+    appendlnToFile(FILE_ANALYSIS)("| n | Entities | Attributes | Relations |")
+    appendlnToFile(FILE_ANALYSIS)("|--:|:---------|:-----------|:----------|")
+
     type CMap = Map[Int, Vector[String]]
     val ent:  CMap = freqOf(isEntity,    countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())   
     val attr: CMap = freqOf(isAttribute, countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())   
     val rel:  CMap = freqOf(isRelation,  countAtLeastVerdict(1, 2)).toMap.withDefaultValue(Vector[String]())  
     def out(i: Int, m: CMap) = s""" & \\texttt{${m(i).mkString(", ")}}"""
-    (14 to 0 by -1).foreach{i => appendlnToFile(FILE_ESSENTIAL)(s"$$$i$$" + out(i, ent) + out(i, attr) + out(i, rel) + NL + "\\hline" )} 
+    (14 to 0 by -1).foreach{i => 
+        appendlnToFile(FILE_ESSENTIAL)(s"$$$i$$" + out(i, ent) + out(i, attr) + out(i, rel) + NL + "\\hline" )
+        appendlnToFile(FILE_ANALYSIS)(s"""| $i | ${out(i, ent)} | ${out(i, attr)} | ${out(i, rel)} |\n""" )
+    } 
   }
 
   def summary = {
