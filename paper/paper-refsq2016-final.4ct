@@ -1,0 +1,14 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\toctitle{}{\csname a:TocLink\endcsname{1}{Q1-1-1}{}{What is essential? -- A pilot survey on views about the requirements metamodel of reqT.org}}{4}\relax 
+\doTocEntry\tocauthor{}{\csname a:TocLink\endcsname{1}{Q1-1-2}{}{\sva:author Bj\"orn Regnell\svb:author }}{4}\relax 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-3}{Introduction}}{4}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-4}{Background}}{5}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-5}{Methodology and Data Collection}}{6}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-3003r1}{}{\ignorespaces A screen dump of a part of the survey instrument.}}{figure}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-7}{Data Analysis}}{9}\relax 
+\doTocEntry\toclot{1}{\csname a:TocLink\endcsname{1}{x1-4002r1}{}{\ignorespaces Background of subjects, $N = 15$. The subjects were given anonymous ids S01--S15.}}{table}\relax 
+\doTocEntry\toclot{2}{\csname a:TocLink\endcsname{1}{x1-4003r2}{}{\ignorespaces Frequency analysis, where $n$ is the number of subjects that for the respective concept answered $(Q1_{usage}>= 1)$ \textit  {and} $(Q2_{meaning} = 2)$. In total there are 92 concepts (49 entities, 15 relations and 28 attributes). The higher up in the table, the more ''essential''.}}{table}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-50005}{QQ2-1-10}{Discussion and Conclusion}}{15}\relax 
+\doTocEntry\toclikesubsubsection{}{\csname a:TocLink\endcsname{1}{x1-60005}{QQ2-1-11}{Acknowledgments.}}{15}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-70005}{QQ2-1-12}{Appendix A: Definitions of Metamodel Concepts}}{16}\relax 
+\par 
