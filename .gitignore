@@ -32,3 +32,4 @@
 **/*.synctex.gz
 **/*.synctex.gz(busy)
 **/*.pdfsync
+*.vrb
