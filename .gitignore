@@ -6,6 +6,8 @@
 **/*.fls
 **/*.out
 **/*.toc
+**/*.snm
+**/*.vrb
 
 ## Intermediate documents:
 **/*.dvi
