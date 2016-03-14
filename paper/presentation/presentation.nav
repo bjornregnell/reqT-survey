@@ -12,8 +12,35 @@
 \headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Approach}}\headcommand {\beamer@subsectionpages {3}{3}}
 \headcommand {\slideentry {1}{2}{1}{4/5}{Approach}{0}}
 \headcommand {\beamer@framepages {4}{5}}
-\headcommand {\beamer@partpages {1}{5}}
-\headcommand {\beamer@subsectionpages {4}{5}}
+\headcommand {\sectionentry {2}{Background}{6}{Background}{0}}
 \headcommand {\beamer@sectionpages {3}{5}}
-\headcommand {\beamer@documentpages {5}}
-\headcommand {\def \inserttotalframenumber {4}}
+\headcommand {\beamer@subsectionpages {4}{5}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{6}{reqT}}\headcommand {\beamer@subsectionpages {6}{5}}
+\headcommand {\slideentry {2}{1}{1}{6/6}{reqT}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\sectionentry {3}{Methodology}{7}{Methodology}{0}}
+\headcommand {\beamer@sectionpages {6}{6}}
+\headcommand {\beamer@subsectionpages {6}{6}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{7}{Data Collection}}\headcommand {\beamer@subsectionpages {7}{6}}
+\headcommand {\slideentry {3}{1}{1}{7/7}{Data Collection}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{8}{Data Analysis}}\headcommand {\beamer@subsectionpages {7}{7}}
+\headcommand {\slideentry {3}{2}{1}{8/8}{Data Analysis}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\sectionentry {4}{Results}{9}{Results}{0}}
+\headcommand {\beamer@sectionpages {7}{8}}
+\headcommand {\beamer@subsectionpages {8}{8}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{9}{Essentiality}}\headcommand {\beamer@subsectionpages {9}{8}}
+\headcommand {\slideentry {4}{1}{1}{9/9}{Essentiality}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\sectionentry {5}{Conclusion}{10}{Conclusion}{0}}
+\headcommand {\beamer@sectionpages {9}{9}}
+\headcommand {\beamer@subsectionpages {9}{9}}
+\headcommand {\beamer@subsectionentry {0}{5}{1}{10}{Future Work}}\headcommand {\beamer@subsectionpages {10}{9}}
+\headcommand {\slideentry {5}{1}{1}{10/10}{Future Work}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\beamer@partpages {1}{10}}
+\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\beamer@sectionpages {10}{10}}
+\headcommand {\beamer@documentpages {10}}
+\headcommand {\def \inserttotalframenumber {9}}
