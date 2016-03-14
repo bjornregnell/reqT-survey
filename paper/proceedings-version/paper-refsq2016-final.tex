@@ -163,11 +163,23 @@ The concepts were gathered from various sources including the IREB Glossary \foo
 \noindent The data collection was made during a Swedish national network meeting with academic RE scholars in spring 2015. The survey was filled in during the meeting using the participants' own laptops  in a spreadsheet shown in Fig.~\ref{fig:survey}. The subjects were given around 20 minutes to complete the survey. Most of the subjects handed in the survey via email directly after the session, while a few finished it after the meeting. 
 \section{Data Analysis}
 
-\textbf{Subject background.} The background questions in the survey regards the role of the subject, as shown in Table \ref{table:background}. The analyzed\footnote{One subject answered NO on all background questions and was therefore excluded.} \input{../analysis/summary.tex} The response rate was 100\% after a reminder was emailed to one missing subject. %\vspace{-0.6cm}
+\textbf{Subject background.} The background questions in the survey regards the role of the subject, as shown in Table \ref{table:background}. The analyzed\footnote{One subject answered NO on all background questions and was therefore excluded.} \input{summary.tex} The response rate was 100\% after a reminder was emailed to one missing subject. %\vspace{-0.6cm}
 
 %\noindent 
 \textbf{Frequency analysis.} The degree of ''essentiality'' is characterized as the number of subjects that has responded that they (1) use the concept at least in an informal, non-persistent way, \textit{and} that they (2) use the concept in a similar meaning as in the definition in Appendix A. Fig.~\ref{fig:survey} shows the definitions of the three-level ordinal scales of Questions $Q1_{usage}$  and $Q2_{meaning}$ respectively. Table \ref{table:frequency} shows the results of the frequency counts.  
-If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts from row $n = 7$ and below in Table~\ref{table:frequency} are considered ''non-essential'', hence showing that more than 90\% of the metamodel concepts have a majority of the subjects that use them and agree upon their definitions. Each concept has at least one subject that uses it and agrees with its definition. Table~3 shows 19 concepts that subjects reported as ''missing'' ($Q3$), where 'or' was the only concept that had consensus among several subjects as considered ''missing''. {The anonymised data and analysis scripts (developed using Scala and Apache POI) are available at: \footnotesize\url{https://github.com/bjornregnell/reqT-survey}} 
+If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts from row $n = 7$ and below in Table~\ref{table:frequency} are considered ''non-essential'', hence showing that more than 90\% of the metamodel concepts have a majority of the subjects that use them and agree upon their definitions. Each concept has at least one subject that uses it and agrees with its definition. 
+
+The following 19 concepts were reported ''missing'': 
+S01: \emph{or}, 
+S02: \emph{bug}, \emph{threshold},
+S04: \emph{role}, \emph{problem}, \emph{motivates}, \emph{and}, \emph{or}, \emph{pattern}, \emph{submodel},
+S06: \emph{plug-in}, \emph{informalism}, 
+S07: \emph{full sentence}, 
+S09: \emph{satisfaction}, \emph{satisfies}, \emph{customer},
+S11: \emph{system-of-interest}, \emph{verification}, \emph{validation}, S13: \emph{context}. 
+Thus, the  concept 'or' was the only concept that had consensus among several subjects (S01, S04) as considered ''missing''. 
+
+{The anonymised data and analysis scripts (developed using Scala and Apache POI) are available at: \footnotesize\url{https://github.com/bjornregnell/reqT-survey}} 
 \vspace{-0.3cm}
 
 \begingroup
@@ -181,12 +193,12 @@ If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts f
 \vspace{-0.2cm}
 \begin{tabular}{p{0.42\textwidth}| p{0.54\textwidth}}
 \textit{Background question} & \textit{Subject responding YES}  \\ \hline
-\input{../analysis/background.tex}
+\input{background.tex}
  \end{tabular}
 \end{table}
 \endgroup
 
-\vspace{-3.2em}
+\vspace{-3.6em}
 \begingroup
 \setlength{\tabcolsep}{4pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.35} % Default value: 1
@@ -198,20 +210,20 @@ If an ''essentiality threshold'' is chosen at $N/2$ then only the $9$ concepts f
 \label{table:frequency}
 \begin{tabular}{l | p{0.33\textwidth} | p{0.30\textwidth} | p{0.25\textwidth}}
 \textit{$n$} & \textit{Entities} & \textit{Attributes} & \textit{Relations} \\ \hline
-\input{../analysis/essential.tex}
+\input{essential.tex}
 \end{tabular}
 \end{center}
 
-\vspace{0.1cm}
-\fontsize{9}{10}\selectfont 
-\textbf{Table 3.} $Q3$ \emph{Missing Concepts} according to subjects:
-S01: or, 
-S02: bug, threshold,
-S04: role, problem, motivates, and, or, pattern, submodel,
-S06: plug-in, informalism, 
-S07: full sentence, 
-S09: satisfaction, satisfies, customer,
-S11: system-of-interest, verification, validation, S13: context. 
+%\vspace{0.1cm}
+%\fontsize{9}{10}\selectfont 
+%\textbf{Table 3.} $Q3$ \emph{Missing Concepts} according to subjects:
+%S01: or, 
+%S02: bug, threshold,
+%S04: role, problem, motivates, and, or, pattern, submodel,
+%S06: plug-in, informalism, 
+%S07: full sentence, 
+%S09: satisfaction, satisfies, customer,
+%S11: system-of-interest, verification, validation, S13: context. 
 \end{table}
 \endgroup
 
@@ -257,7 +269,7 @@ The presented survey is a pilot investigation with two main contributions: (1) t
 \begin{tabular}{l p{4.6cm}}
 
 \textbf{\textit{Entity}} & \textbf{\textit{Definition}}  \\
-\input{../analysis/entity-defs.tex}
+\input{entity-defs.tex}
  \end{tabular}
 \end{table}
 \end{minipage}
@@ -272,10 +284,10 @@ The presented survey is a pilot investigation with two main contributions: (1) t
 \begin{tabular}{|l p{4.1cm}}
  
 \textbf{\textit{Attribute}} & \textbf{\textit{Definition}}  \\ 
-\input{../analysis/attribute-defs.tex}
+\input{attribute-defs.tex}
  & \\
  \textbf{\textit{Relation}} & \textbf{\textit{Definition}}  \\ 
-\input{../analysis/relation-defs.tex}
+\input{relation-defs.tex}
 
 \end{tabular}
 \end{table}
