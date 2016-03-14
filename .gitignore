@@ -7,7 +7,7 @@
 **/*.out
 **/*.toc
 **/*.snm
-**/*.vrb
+**/*.nav
 
 ## Intermediate documents:
 **/*.dvi
@@ -32,4 +32,4 @@
 **/*.synctex.gz
 **/*.synctex.gz(busy)
 **/*.pdfsync
-*.vrb
+**/*.vrb
