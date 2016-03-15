@@ -1,11 +1,11 @@
 \documentclass{slides}
 
 \setbeamertemplate{footline}[frame number]
-\title[What is essential?]{What is essential?}
+\title[What is essential? -- A research preview]{What is essential?}
 \subtitle{\footnotesize -- A pilot survey on views about the requirements metamodel of reqT.org}
 \author{Björn Regnell}
-\institute{Lund University}
-\date{March 14, 2016\\ \href{http://refsq.org/2016}{refsq.org/2016}\\ \href{https://github.com/bjornregnell/reqT-survey}{github.com/bjornregnell/reqT-survey}}
+\institute{Lund University, Sweden}
+\date{\href{http://refsq.org/2016}{refsq.org/2016}\\ \href{https://github.com/bjornregnell/reqT-survey}{github.com/bjornregnell/reqT-survey}}
 
 \usepackage{xcolor}
 \definecolor{entityColor}{RGB}{0,100,200}
@@ -58,7 +58,7 @@ In the context of software requirements engineering education:
 \end{itemize}
 \end{itemize}
 \pause
-\item Use the reqT metamodel as a basis for the survey
+\item Use the reqT.org metamodel as a basis for the survey
 \end{itemize}
 \end{Slide}
 
@@ -67,8 +67,8 @@ In the context of software requirements engineering education:
 \begin{Slide}{What is reqT?}
 \begin{itemize}
 \item reqT is an open source requirements engineering tool developed in an \Emph{educational} context\\ Download from here: \url{http://reqt.org/} \\ \texttt{java -jar reqT.jar}
-\item reqT aims to inspire \Alert{code-loving} cs students to learn more about RE through a \Emph{Scala}-internal DSL
-\item reqT has a \Emph{metamodel} including entities, relations and attributes gathered from various sources such as text books, research papers, IREB, wikipedia, etc.
+\item reqT aims to inspire \Emph{code-loving} cs students to learn more about RE through a \Emph{Scala}-internal DSL
+\item has a metamodel with {\color{entityColor}{\bf entities}}, {\color{relationColor}{\bf relations}} and {\color{attributeColor}{\bf attributes}}\\ gathered from various sources such as \\ text books, research papers, IREB, wikipedia, etc.
 \end{itemize}
 \end{Slide}
 
@@ -140,26 +140,60 @@ Model(
 {\centering
 \includegraphics[width=0.8\textwidth]{img/survey-screen-dump}
 }
-Q1 use? =   no, orally, also in writing\\
-Q2 agree? = no, don't know, yes  \\
+{\small Q1 use =   \{no | used, but only orally | used, also in writing\}\\ Q2 agree = \{no, different meaning | don't know | yes, similar meaning\}  \\
 Answered by 15 swedish RE scholars (100\% response rate)\\
 \url{https://github.com/bjornregnell/reqT-survey}
-
+}
 
 \end{Slide}
 
 \subsection{Data Analysis}
 \begin{Slide}{Data Analysis}
+\textbf{Frequency analysis.} The degree of ''essentiality'' is characterized as the number of subjects that has responded that they (1) use the concept at least in an informal, non-persistent way, \textit{and} that they (2) use the concept in a similar meaning as in the definition in Appendix A. 
+
+
 \end{Slide}
 
 \section{Results}
 \subsection{Essentiality}
-\begin{Slide}{Essentiality}
+\begin{Slide}{Frequency Analysis}
+\fontsize{6}{8}\selectfont
+
+\begin{tabular}{l | p{0.33\textwidth} | p{0.30\textwidth} | p{0.25\textwidth}}
+\textit{$n$} & \textit{Entities} & \textit{Attributes} & \textit{Relations} \\ \hline
+\input{../proceedings/essential.tex}
+\end{tabular}
+
+\end{Slide}
+
+\begin{Slide}{Essentiality Definition}
+\begin{itemize}
+\item If an ''essentiality threshold'' is chosen at $N/2$ then \\ only the $9$ concepts from row $n = 7$ and below are considered ''non-essential''
+\item \Alert{More than 90\% of the 92 metamodel concepts have a majority of the subjects that use them and agree upon their definitions} 
+\item Each concept has at least one subject that uses it and agrees with its definition. 
+\end{itemize}
+
 \end{Slide}
 
 \section{Conclusion}
-\subsection{Future Work}
-\begin{Slide}{Future Work}
+\subsection{Contribution \& Future Work}
+\begin{Slide}{Conlusion}
+
+\begin{itemize} 
+\item Contribution
+\begin{itemize} 
+\item A way to quantify ''essentiality'' -- tested in a pilot survey
+\item A set of potentially ''essential'' concepts \\ (according to 14 RE scolars in Sweden)
+\end{itemize}
+\end{itemize}
+
+\begin{itemize} 
+\item Future Work
+\begin{itemize} 
+\item More subjects for increased external validity
+\item More questions on missing and alternative concepts
+\end{itemize}
+\end{itemize}
 \end{Slide}
 
 \end{document}
