@@ -7,6 +7,28 @@
 \institute{Lund University}
 \date{March 14, 2016\\ \href{http://refsq.org/2016}{refsq.org/2016}\\ \href{https://github.com/bjornregnell/reqT-survey}{github.com/bjornregnell/reqT-survey}}
 
+\usepackage{xcolor}
+\definecolor{entityColor}{RGB}{0,100,200}
+\definecolor{attributeColor}{RGB}{0,100,50}
+\definecolor{relationColor}{RGB}{160,0,30}
+
+\lstdefinestyle{reqT}{
+  %belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  %showstringspaces=false,
+  showspaces=false,
+  %breakatwhitespace=true,
+  basicstyle=\ttfamily\fontsize{8}{10}\selectfont,
+  emph={Ent,Meta,Item,Label,Section,Term,Actor,App,Component,Domain,Module,Product,Release,Resource,Risk,Service,Stakeholder,System,User,Class,Data,Input,Member,Output,Relationship,Design,Screen,MockUp,Function,Interface,State,Event,Epic,Feature,Goal,Idea,Issue,Req,Ticket,WorkPackage,Breakpoint,Barrier,Quality,Target,Scenario,Task,Test,Story,UseCase,VariationPoint,Variant},
+  emphstyle=\bfseries\color{entityColor},
+  emph={[2]has,is,superOf,binds,deprecates,excludes,helps,hurts,impacts,implements,interactsWith,precedes,requires,relatesTo,verifies},
+  emphstyle={[2]\color{relationColor}},
+  emph={[3]Attr,Code,Constraints,Comment,Deprecated,Example,Expectation,FileName,Gist,Image,Spec,Text,Title,Why,Benefit,Capacity,Cost,Damage,Frequency,Min,Max,Order,Prio,Probability,Profit,Value,Status},
+  emphstyle={[3]\itshape \color{attributeColor}},  
+}
+\lstset{style=reqT, language=}
+
+
 \begin{document}
 
 \frame{\titlepage}
@@ -18,30 +40,112 @@
 In the context of software requirements engineering education:
 \begin{itemize}
 \item How to choose a set of \\ \Emph{essential requirements engineering concepts} \\ that allows for \Alert{sufficient expressiveness}, \\ without overloading the metamodel with esoteric concepts just for the sake of \Alert{completeness}?
+\pause
+\item Presumption: as teachers we should be method agnostic; there is no single ''correct'' dogma
 \end{itemize}
 \end{Slide}
 \subsection{Approach}
 \begin{Slide}{Approach}
-Make a survey among RE scholars:
+\begin{itemize}
+
+\item Make a survey among RE scholars
+\pause
 \begin{itemize}
 \item How to quantify ''essentiality''?
 \pause
-\item One possible quantification: \\ The more scholars that \Emph{agree} on a definition of a concept \\ and \\ the more scholars that \Emph{use} the concept, \\ the more essential is the concept.
+\begin{itemize}
+\item One possible quantification: \\ The more scholars that \Emph{agree} on a definition of a concept \\ and \\ the more scholars that \Emph{use} the concept, \\ the more \Alert{essential} is the concept.
+\end{itemize}
+\end{itemize}
+\pause
+\item Use the reqT metamodel as a basis for the survey
 \end{itemize}
 \end{Slide}
 
 \section{Background}
 \subsection{About reqT}
-\begin{Slide}{reqT}
+\begin{Slide}{What is reqT?}
 \begin{itemize}
-\item reqT is an open source requirements engineering tool \\ \url{http://reqt.org/}
-\item reqT is developed and used in an \Emph{educational context} aimed at inspiring \Alert{code-loving} computer science students to learn more about RE
+\item reqT is an open source requirements engineering tool developed in an \Emph{educational} context\\ Download from here: \url{http://reqt.org/} \\ \texttt{java -jar reqT.jar}
+\item reqT aims to inspire \Alert{code-loving} cs students to learn more about RE through a \Emph{Scala}-internal DSL
+\item reqT has a \Emph{metamodel} including entities, relations and attributes gathered from various sources such as text books, research papers, IREB, wikipedia, etc.
 \end{itemize}
 \end{Slide}
+
+\begin{Slide}{A small reqT model}
+\begin{Code}
+val m = Model(
+  Feature("chat") has (
+    Spec("The system shall enable sending text messages among users"),
+    Prio(42)
+  )
+)
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{An larger example reqT model}
+\begin{Code}
+Model(
+  Component("appearance") has (
+    VariationPoint("color") has (
+      Min(0), Max(2), Variant("blue"), Variant("red"), Variant("green")),
+    VariationPoint("shape") has (
+      Min(1), Max(1), Variant("round"), Variant("square")),
+    VariationPoint("payment") has (
+      Min(1), Max(2), Variant("cash"), Variant("credit")),
+    VariationPoint("payment") requires Variant("cash"), 
+    Variant("round") excludes Variant("red"),
+    Variant("green") requires Variant("square")),
+  Component("appearance") requires VariationPoint("shape"), 
+  App("free") has Component("appearance"),  
+  App("free") binds (VariationPoint("shape") binds Variant("round")),
+  App("premium") has Component("appearance"),  
+  App("premium") binds ( 
+    VariationPoint("color") binds (Variant("red"), Variant("green")),
+    VariationPoint("shape") binds (Variant("round"), Variant("square")),
+    VariationPoint("payment") binds Variant("cash")))
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{49 entities of the metamodel (see paper appendix)}
+\fontsize{3.5}{4.0}\selectfont
+\begin{tabular}{l l}
+\textbf{\textit{Entity}} & \textbf{\textit{Definition}}  \\
+\input{../proceedings/entity-defs.tex}
+\end{tabular}
+\end{Slide}
+
+\begin{Slide}{28 atributes of the metamodel (see paper appendix)}
+\fontsize{6}{6.5}\selectfont
+\begin{tabular}{l l}
+\textbf{\textit{Attributes}} & \textbf{\textit{Definition}}  \\
+\input{../proceedings/attribute-defs.tex}
+\end{tabular}
+\end{Slide}
+
+
+\begin{Slide}{15 realtions of the metamodel (see paper appendix)}
+\fontsize{8}{9}\selectfont
+\begin{tabular}{l l}
+\textbf{\textit{Relation}} & \textbf{\textit{Definition}}  \\
+\input{../proceedings/relation-defs.tex}
+\end{tabular}
+\end{Slide}
+
+
 
 \section{Methodology}
 \subsection{Data Collection}
 \begin{Slide}{Data Collection}
+{\centering
+\includegraphics[width=0.8\textwidth]{img/survey-screen-dump}
+}
+Q1 use? =   no, orally, also in writing\\
+Q2 agree? = no, don't know, yes  \\
+Answered by 15 swedish RE scholars (100\% response rate)\\
+\url{https://github.com/bjornregnell/reqT-survey}
+
+
 \end{Slide}
 
 \subsection{Data Analysis}
