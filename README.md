@@ -2,7 +2,7 @@
 This repo contains the code for analyzing the reqT metamodel survey on essential requirements engineering concepts.
 
 ## How to participate in the survey?
-Go to https://github.com/reqT/reqT/tree/3.0.x/survey and download the `reqT-survey.xls` raw file and email when completed to bjorn.regnell@cs.lth.se
+Go to https://github.com/bjornregnell/reqT-survey/tree/master/survey and download the `reqT-survey.xls` raw file and email when completed to bjorn.regnell@cs.lth.se
 
 ## How to run the analysis?
 
