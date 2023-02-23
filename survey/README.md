@@ -10,6 +10,6 @@ The goal of this survey is to investigate opinions on requirements engineering c
 
 In the [reqT-survey] repo you can check out how the survey is analyzed.
 
-[reqT-survey.xls]: https://github.com/reqT/reqT/raw/3.0.x/survey/reqT-survey.xls
+[reqT-survey.xls]: https://github.com/bjornregnell/reqT-survey/raw/master/survey/reqT-survey.xls
 [LibreOffice]: https://www.libreoffice.org/download/
 [reqT-survey]: https://github.com/bjornregnell/reqT-survey
